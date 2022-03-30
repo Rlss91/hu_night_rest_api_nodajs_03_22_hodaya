@@ -3,17 +3,19 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const apiRouter = require("./routers/api");
+const config = require("config");
+const chalk = require("chalk");
 
 const app = express();
 
 //Connect to db:
 mongoose
-  .connect("mongodb://localhost/project_rest_api")
+  .connect(config.get("mongoConStr"))
   .then(() => {
-    console.log("connected to mongoDB");
+    console.log(chalk.cyan("connected to mongoDB"));
   })
   .catch(() => {
-    console.log("could not connect to mongoDB");
+    console.log(chalk.red("could not connect to mongoDB"));
   });
 
 //Apply middleware:
@@ -25,7 +27,7 @@ app.use(morgan("dev"));
 app.use("/api", apiRouter);
 
 //Connected to port:
-const PORT = 3003;
+const PORT = process.env.PORT || 3003;
 app.listen(PORT, () => {
-  console.log(`Listening to port: ${PORT}`);
+  console.log(chalk.yellow(`Listening to port: ${PORT}`));
 });

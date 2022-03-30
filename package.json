@@ -7,13 +7,14 @@
     "start": "node .",
     "dev": "nodemon ."
   },
-  "author": "",
+  "author": "Hodaya Abu",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.15"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "chalk": "^4.1.1",
     "config": "^3.3.6",
     "cors": "^2.8.5",
     "express": "^4.17.2",
