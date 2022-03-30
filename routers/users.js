@@ -47,4 +47,13 @@ router.get("/me", auth, async (req, res) => {
   }
 });
 
+router.get("/allusers", auth, async (req, res) => {
+  try {
+    const users = await User.find({}).select(["-password", "-__v"]);
+    res.json(users);
+  } catch (err) {
+    res.status(401).json({ err });
+  }
+});
+
 module.exports = router;
